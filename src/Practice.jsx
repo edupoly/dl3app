@@ -1,34 +1,56 @@
 function Practice() {
-  var a = 120;
-  var b = 3;
-  var c = "Harisha";
-  var ar = ["deepika", "alia", "Sonakshi", "Katrina"];
-  var student = {
-    firstname: "Jyothi",
-    age: 20,
-    gender: "Female",
-  };
+  var students = [
+    {
+      firstname: "Jyothi",
+      age: 20,
+      gender: "Female",
+    },
+    {
+      firstname: "Kaushik",
+      age: 21,
+      gender: "Male",
+    },
+    {
+      firstname: "Sanjay",
+      age: 16,
+      gender: "Male",
+    },
+    {
+      firstname: "Divya",
+      age: 21,
+      gender: "Female",
+    },
+    {
+      firstname: "Sanjay",
+      age: 22,
+      gender: "Male",
+    },
+    {
+      firstname: "Moukthika",
+      age: 21,
+      gender: "Female",
+    },
+    {
+      firstname: "Harisha",
+      age: 20,
+      gender: "Female",
+    },
+  ];
 
   return (
     <div className="mybox">
-      <h1>Lets understand JSX</h1>
-      <h2>{10 + 20}</h2>
-      <h2>{a + b}</h2>
-      <h2>{a * b}</h2>
-      <h2>{a ** b}</h2>
-      <h2>{c.toUpperCase()}</h2>
-      <ul>
-        <li>{ar[0]}</li>
-        <li>{ar[1]}</li>
-        <li>{ar[2]}</li>
-      </ul>
-      <ol>
-        {ar.map((h) => {
-          return <li>{h}</li>;
+      <h1>Lets understand JSX GenUI</h1>
+      <table border="2" width="100%">
+        {students.map((st) => {
+          return (
+            <tr>
+              <td>{st.firstname}</td>
+              <td>{st.age}</td>
+              <td>{st.gender}</td>
+            </tr>
+          );
         })}
-      </ol>
-      <h1>{student.firstname}</h1>
-      <h2>{student.gender}</h2>
+      </table>
     </div>
   );
 }
