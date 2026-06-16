@@ -1,16 +1,17 @@
 import "./index.css";
 import Second from "./Second";
-import Third from "./Thid";
-import Nalugu from "./Fourth";
-
+import MyContext from "./MyContext";
 function App() {
+  var a = 100;
   return (
-    <div className="mybox">
-      <h1>Welcome to Modern Application Development</h1>
-      <Second></Second>
-      <Third></Third>
-      <Nalugu></Nalugu>
-    </div>
+    <MyContext.Provider
+      value={{ name: "Praveen", age: 30, place: "Bangalore" }}
+    >
+      <div className="mybox">
+        <h1>Welcome to Modern Application Development {a}</h1>
+        <Second x={a}></Second>
+      </div>
+    </MyContext.Provider>
   );
 }
 
