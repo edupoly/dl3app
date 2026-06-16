@@ -1,15 +1,26 @@
+import { useEffect, useRef } from "react";
 import "./index.css";
-import Second from "./Second";
-import Third from "./Thid";
-import Nalugu from "./Fourth";
-
 function App() {
+  var r1 = useRef();
+  var r2 = useRef();
+  function show(ev) {
+    r1.current.innerText = ev.target.value;
+    // document.getElementById("d1").innerText = ev.target.value;
+  }
+  useEffect(() => {
+    r2.current.focus();
+  }, []);
   return (
     <div className="mybox">
       <h1>Welcome to Modern Application Development</h1>
-      <Second></Second>
-      <Third></Third>
-      <Nalugu></Nalugu>
+      <input
+        type="text"
+        onKeyUp={(ev) => {
+          show(ev);
+        }}
+        ref={r2}
+      />
+      <div ref={r1}></div>
     </div>
   );
 }
