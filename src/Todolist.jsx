@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import TodoItem from "./TodoItem";
 function Todolist() {
   var [todos, setTodos] = useState([
@@ -9,27 +9,21 @@ function Todolist() {
     "buy tickets",
   ]); //state
   //action
+
   function addTodo() {
-    //adding textbox value into todos array
     var ntd = document.getElementById("d1").value;
-    // todos.push(ntd);//wrong
     setTodos([...todos, ntd]);
   }
-  function deleteTodo(index) {
-    // solution 1
-    var temp = [...todos];
-    temp.splice(index, 1);
-    setTodos([...temp]);
 
-    //soluction 2
+  var deleteTodo = useCallback((index) => {
+    setTodos((ctodos) => {
+      ctodos = ctodos.filter((t, i) => {
+        return i != index;
+      });
+      return [...ctodos];
+    });
+  }, []);
 
-    // setTodos((ctodos) => {
-    //   ctodos = ctodos.filter((t, i) => {
-    //     return i != index;
-    //   });
-    //   return [...ctodos];
-    // });
-  }
   return (
     <div className="mybox" style={{ textAlign: "center" }}>
       <b>Todolist</b>
@@ -44,7 +38,9 @@ function Todolist() {
       </button>
       <ul style={{ padding: "0px" }}>
         {todos.map((todo, i) => {
-          return <TodoItem i={i} t={todo} dTodo={deleteTodo}></TodoItem>;
+          return (
+            <TodoItem i={i} t={todo} dTodo={deleteTodo} key={todo}></TodoItem>
+          );
         })}
       </ul>
     </div>
@@ -55,3 +51,7 @@ export default Todolist;
 // state
 //action
 //UI
+
+//memo
+//useCallback
+//useMemo

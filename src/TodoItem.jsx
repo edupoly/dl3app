@@ -1,4 +1,14 @@
+import { useEffect, memo } from "react";
+
 function TodoItem(props) {
+  useEffect(() => {
+    console.log("TodoItem Mounted ", props.t);
+  }, []);
+
+  useEffect(() => {
+    console.log("TodoItem Updated ", props.t);
+  });
+
   return (
     <div
       className="mybox"
@@ -18,4 +28,4 @@ function TodoItem(props) {
   );
 }
 
-export default TodoItem;
+export default memo(TodoItem);
