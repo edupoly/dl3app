@@ -3,6 +3,10 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Counter from "./Counter.jsx";
 import Todolist from "./Todolist.jsx";
+import Products from "./Products.jsx";
+import ProductDetails from "./ProductDetails.jsx";
+import Recipes from "./Recipes.jsx";
+import RecipeDetails from "./RecipeDetails.jsx";
 var router = createBrowserRouter([
   {
     path: "/",
@@ -15,6 +19,24 @@ var router = createBrowserRouter([
       {
         path: "/todolist",
         element: <Todolist></Todolist>,
+      },
+      {
+        path: "/products",
+        element: <Products></Products>,
+      },
+      {
+        path: "/productDetails/:id",
+        element: <ProductDetails></ProductDetails>,
+      },
+      {
+        path: "/recipes",
+        element: <Recipes></Recipes>,
+        children: [
+          {
+            path: "/recipes/recipeDetails/:id",
+            element: <RecipeDetails></RecipeDetails>,
+          },
+        ],
       },
     ],
   },
