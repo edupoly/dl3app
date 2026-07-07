@@ -1,13 +1,12 @@
-import Counter from "./features/counter/Counter";
-import Todolist from "./features/todolist/Todolist";
+import { Outlet } from "react-router-dom";
 import "./index.css";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="mybox">
-      <h1>Welcome to Modern Application Development</h1>
-      <Counter></Counter>
-      <Todolist></Todolist>
+    <div>
+      <Navbar></Navbar>
+      <Outlet></Outlet>
     </div>
   );
 }
