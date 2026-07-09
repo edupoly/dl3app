@@ -1,15 +1,20 @@
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 function Navbar() {
+  const { cartItems } = useSelector((state) => state.cartR);
+  const { userDetails } = useSelector((state) => state.userR);
+
   return (
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container">
+        <a className="navbar-brand" href="#">
           <img
             style={{ width: "100px" }}
             src="https://png.pngtree.com/png-vector/20250513/ourmid/pngtree-e-commerce-logo-design-with-f-letter-vector-png-image_16209651.png"
           ></img>
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -17,30 +22,33 @@ function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to="/" className="nav-link active" aria-current="page">
                 Home
-              </a>
+              </Link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+            <li className="nav-item">
+              <a className="nav-link" href="#">
                 Features
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Pricing
-              </a>
+            <li className="nav-item">
+              <Link to="/cart" className="nav-link" aria-disabled="true">
+                Cart({cartItems.length})
+              </Link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">
-                Disabled
-              </a>
-            </li>
+            {userDetails?.token && <button>Logout</button>}
+            {!userDetails && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

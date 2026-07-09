@@ -1,16 +1,19 @@
-import React from "react";
 import { useGetAllProductsQuery } from "../../services/productsApi";
+import ProductCard from "./ProductCard";
 
 function ProductsList() {
   const { isLoading, data } = useGetAllProductsQuery();
-  console.log(data);
   return (
     <div>
       {isLoading && <b>Loading....</b>}
       {!isLoading && (
-        <ul>
+        <ul className="d-flex flex-wrap justify-content-center list-unstyled">
           {data?.products?.map((product) => {
-            return <li>{product.title}</li>;
+            return (
+              <li className="m-2" key={product.id}>
+                <ProductCard product={product}></ProductCard>
+              </li>
+            );
           })}
         </ul>
       )}
