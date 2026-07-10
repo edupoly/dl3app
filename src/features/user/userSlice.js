@@ -15,9 +15,12 @@ export const userSlice = createSlice({
         JSON.stringify(action.payload),
       );
     },
+    logout: (state, action) => {
+      state.userDetails = null;
+    },
   },
 });
 
-export const { updateUser } = userSlice.actions;
+export const { updateUser, logout } = userSlice.actions;
 const userReducer = userSlice.reducer;
 export default userReducer;

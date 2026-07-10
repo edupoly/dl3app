@@ -22,7 +22,7 @@ function Cart() {
                       alt="..."
                     />
                   </div>
-                  {/* <div class="col-md-8">
+                  <div class="col-md-8">
                     <div class="card-body">
                       <h5 class="card-title">{item.title}</h5>
                       <p class="card-text">
@@ -50,7 +50,7 @@ function Cart() {
                         </small>
                       </p>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
               </div>
             );

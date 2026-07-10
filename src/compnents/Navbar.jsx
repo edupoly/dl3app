@@ -1,9 +1,17 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../features/user/userSlice";
+import { clearCart } from "../features/products/cartSlice";
 function Navbar() {
   const { cartItems } = useSelector((state) => state.cartR);
   const { userDetails } = useSelector((state) => state.userR);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  function logoutFn() {
+    dispatch(logout());
+    dispatch(clearCart());
+    navigate("/login");
+  }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container">
@@ -41,7 +49,16 @@ function Navbar() {
                 Cart({cartItems.length})
               </Link>
             </li>
-            {userDetails?.token && <button>Logout</button>}
+            {userDetails?.token && (
+              <button
+                className="btn btn-danger"
+                onClick={() => {
+                  logoutFn();
+                }}
+              >
+                Logout
+              </button>
+            )}
             {!userDetails && (
               <li className="nav-item">
                 <Link className="nav-link" to="/login">

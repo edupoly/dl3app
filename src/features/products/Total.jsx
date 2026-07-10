@@ -1,20 +1,35 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Total() {
   const { cartItems } = useSelector((state) => state.cartR);
+  const { userDetails } = useSelector((state) => state.userR);
+  const navigate = useNavigate();
+
   console.log(cartItems);
+  function checkoutFn() {
+    if (userDetails) {
+      navigate("/payment");
+    } else {
+      navigate("/login");
+    }
+  }
   return (
     <div>
       <h1>
         Total : Rs.
         {cartItems?.reduce((a, b) => {
-          return a.price * a.count + b.price * b.count;
-        })}
+          return a + b.price * b.count;
+        }, 0)}
       </h1>
-      <Link to="/payment" className="btn btn-primary">
+      <button
+        onClick={() => {
+          checkoutFn();
+        }}
+        className="btn btn-primary"
+      >
         Check out
-      </Link>
+      </button>
     </div>
   );
 }
